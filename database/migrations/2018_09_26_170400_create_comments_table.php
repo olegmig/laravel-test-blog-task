@@ -21,8 +21,10 @@ class CreateCommentsTable extends Migration
             $table->integer('category_id')->unsigned()->nullable();
             $table->integer('post_id')->unsigned()->nullable();
 
-            $table->foreign('category_id')->references('id')->on('categories');
-            $table->foreign('post_id')->references('id')->on('posts');
+            $table->foreign('category_id')->references('id')->on('categories')
+                ->onDelete('cascade');
+            $table->foreign('post_id')->references('id')->on('posts')
+                ->onDelete('cascade');
         });
     }
 

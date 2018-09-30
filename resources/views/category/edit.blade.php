@@ -30,6 +30,13 @@
 
             <button type="submit" class="btn btn-default btn-primary">Update</button>
         </form>
+        <br>
+        <form action="{{ route('category.destroy', $category->id) }}" method="POST">
+            @method('DELETE')
+            @csrf
+            <button class="btn btn-danger">Delete Category</button>
+        </form>
+        <br>
     </div>
 </div>
 

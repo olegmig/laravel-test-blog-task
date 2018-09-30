@@ -68,4 +68,21 @@ class CategoryTest extends TestCase
             ->assertStatus(302)
             ->assertSessionHasNoErrors();
     }
+
+    /**
+     * Test category deleting
+     */
+    public function testCategoryDeleting()
+    {
+        $this->withoutMiddleware(VerifyCsrfToken::class);
+
+        // create new category
+        $category = factory(Category::class)->create();
+
+        // delete it
+        $this->delete("/category/{$category->id}")
+            ->assertStatus(302);
+
+        $this->assertDatabaseMissing('categories', $category->toArray());
+    }
 }

@@ -99,4 +99,17 @@ class PostController extends Controller
         $post->update($data);
         return redirect("/post/{$post->id}");
     }
+
+    /**
+     * Delete the specified resource from storage.
+     *
+     * @param Post $post
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @throws \Exception
+     */
+    public function destroy(Post $post)
+    {
+        $post->delete();
+        return redirect('/post');
+    }
 }

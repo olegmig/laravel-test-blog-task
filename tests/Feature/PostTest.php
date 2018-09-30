@@ -197,4 +197,21 @@ class PostTest extends TestCase
         Storage::disk()->assertMissing("{$disk}/{$file->hashName()}");
         Storage::disk()->delete("{$disk}/{$file->hashName()}");
     }
+
+    /**
+     * Test post deleting
+     */
+    public function testPostDeleting()
+    {
+        $this->withoutMiddleware(VerifyCsrfToken::class);
+
+        // create new post
+        $post = factory(Post::class)->create();
+
+        // delete it
+        $this->delete("/post/{$post->id}")
+            ->assertStatus(302);
+
+        $this->assertDatabaseMissing('posts', $post->toArray());
+    }
 }

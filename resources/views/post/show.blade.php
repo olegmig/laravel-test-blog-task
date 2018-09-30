@@ -18,6 +18,11 @@
                 <span>File:</span> <a href="{{ asset('storage' . $post->file) }}" download>Download</a>
             @endif
         </p>
+        <form action="{{ route('post.destroy', $post->id) }}" method="POST">
+            @method('DELETE')
+            @csrf
+            <button class="btn btn-danger">Delete Post</button>
+        </form>
     </div>
 </div>
 <hr>

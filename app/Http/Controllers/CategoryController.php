@@ -84,4 +84,17 @@ class CategoryController extends Controller
 
         return redirect("/category/{$category->id}");
     }
+
+    /**
+     * Delete the specified resource from storage.
+     *
+     * @param Category $category
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @throws \Exception
+     */
+    public function destroy(Category $category)
+    {
+        $category->delete();
+        return redirect('/category');
+    }
 }

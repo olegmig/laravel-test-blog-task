@@ -4,8 +4,16 @@
 
 <div class="row">
     <div class="col-lg-12">
-        <h2 class="mt-4">Category: {{ $category->name }} <a href="{{ url("/category/{$category->id}/edit") }}" class="btn btn-link"><i class="fas fa-edit"></i></a></h2>
+        <h2 class="mt-4">Category: {{ $category->name }}
+            <a href="{{ url("/category/{$category->id}/edit") }}" class="btn btn-link"><i class="fas fa-edit"></i></a>
+        </h2>
         <p class="lead">{{ $category->description }}</p>
+
+        <form action="{{ route('category.destroy', $category->id) }}" method="POST">
+            @method('DELETE')
+            @csrf
+            <button class="btn btn-danger">Delete Category</button>
+        </form>
     </div>
 </div>
 <hr>
