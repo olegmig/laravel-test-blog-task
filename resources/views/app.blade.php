@@ -21,11 +21,6 @@
     <section class="wrapper">
         <div class="container">
 
-            {{--place "back" button everywhere except index page--}}
-            @if (!request()->is('/'))
-                <a href="{{ url()->previous() }}" class="btn btn-default btn-link"><i class="fas fa-chevron-left"></i> Back</a>
-            @endif
-
             @yield('content')
 
         </div>
