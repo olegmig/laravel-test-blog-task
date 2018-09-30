@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use App\Session;
 use Closure;
+use Illuminate\Support\Facades\Cookie;
 use Jenssegers\Agent\Agent;
 
 class StoreSessions
@@ -23,7 +24,7 @@ class StoreSessions
     public function terminate()
     {
         // store user session if not stored yet
-        $sessionId = session()->getId();
+        $sessionId = Cookie::get('laravel_session');
         if (!Session::find($sessionId)) {
             $agent = new Agent();
             Session::create([
