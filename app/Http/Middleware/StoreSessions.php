@@ -25,7 +25,7 @@ class StoreSessions
     {
         // store user session if not stored yet
         $sessionId = Cookie::get('laravel_session');
-        if (!Session::find($sessionId)) {
+        if ($sessionId && !Session::find($sessionId)) {
             $agent = new Agent();
             Session::create([
                 'id'         => $sessionId,
